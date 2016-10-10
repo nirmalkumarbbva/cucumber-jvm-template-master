@@ -4,6 +4,8 @@ import helpers.Log;
 
 import java.util.HashMap;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
@@ -16,6 +18,14 @@ public class SignInAction {
 	public static void Execute(WebDriver driver,HashMap<String,String> map) throws Exception{
 		
 		AutomationHomePage.sign_in.click();
+		Thread.sleep(5000L);
+		LoginPage.email.clear();
+		LoginPage.email.sendKeys(map.get("email"));
+		LoginPage.password.sendKeys(map.get("passwd"));
+		
+		driver.findElement(By.id("SubmitLogin")).sendKeys(Keys.ENTER);
+		Thread.sleep(5000L);
+		
 /*		Log.info("Click action is perfromed on My Account link" );
 		System.out.println("Click action is perfromed on My Account link");
 

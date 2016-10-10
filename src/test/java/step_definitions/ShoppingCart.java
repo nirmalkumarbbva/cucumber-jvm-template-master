@@ -30,8 +30,8 @@ public class ShoppingCart{
     	
     	datamap = new ArrayList<HashMap<String,String>>();
     	HashMap<String,String> sampleData = new HashMap<String,String>();
-    	sampleData.put("username","abc@xyz.com");
-    	sampleData.put("password","Test@123");
+    	sampleData.put("email","nirmalkumar99@yahoo.com");
+    	sampleData.put("passwd","nirmalbbva12345");
     	System.out.println("Current data" +sampleData);
     	datamap.add(sampleData);
     }
