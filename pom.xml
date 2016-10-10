@@ -8,6 +8,11 @@
 	<packaging>jar</packaging>
 	<name>Cucumber-JVM template</name>
 
+	<properties>
+	    <!-- github server corresponds to entry in ~/.m2/settings.xml -->
+	    <github.global.server>github</github.global.server>
+	</properties>
+
 	<dependencies>
 
 		<dependency>
@@ -79,6 +84,42 @@
 						</dependency>
 					</dependencies>
 				</plugin>
+				
+				<plugin>
+			         <groupId>com.github.github</groupId>
+			         <artifactId>site-maven-plugin</artifactId>
+			         <version>0.8</version>
+			         <configuration>
+			              <!-- git commit message -->
+			              <message>Maven artifacts for ${project.version}</message>
+			              <!-- disable webpage processing -->
+			              <noJekyll>true</noJekyll>
+			              <!-- matches distribution management repository url above -->
+			              <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+			              <!-- remote branch name -->
+			              <branch>refs/heads/mvn-repo</branch>
+			              <!-- If you remove this then the old artifact will be removed and new 
+			               one will replace. But with the merge tag you can just release by changing 
+			                                                the version -->
+			              <merge>true</merge>
+			              <includes>
+			                <include>**/*</include>
+			                </includes>
+			                <!-- github repo name -->
+			                <repositoryName>cucumber-jvm-template-master</repositoryName>
+			                <!-- github username -->
+			                <repositoryOwner>nirmalkumarbbva</repositoryOwner>
+			          </configuration>
+			          <executions>
+			              <execution>
+			                    <goals>
+			                         <goal>site</goal>
+			                    </goals>
+			                    <phase>deploy</phase>
+			              </execution>
+			          </executions>
+				</plugin>
+
 			</plugins>
 		</pluginManagement>
 	</build>

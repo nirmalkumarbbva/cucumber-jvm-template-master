@@ -41,7 +41,7 @@ public class Hooks{
 				e.printStackTrace();
 			}
     	
-    	System.out.println("service.getUrl()::::"+service.getUrl());
+    	System.out.println("111 - service.getUrl()::::"+service.getUrl());
     	driver= new RemoteWebDriver(service.getUrl(), DesiredCapabilities.chrome());
     	
     	//driver = new ChromeDriver();
