@@ -46,6 +46,7 @@ public class Hooks{
     	driver= new RemoteWebDriver(service.getUrl(), DesiredCapabilities.chrome());  
     	
     	// driver = new ChromeDriver();
+    	// Test
     	driver.manage().deleteAllCookies();
     	driver.manage().window().maximize();
     	
