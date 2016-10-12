@@ -13,7 +13,7 @@ public class AutomationHomePage extends BaseClass{
 		super(driver);
 	}    
 
-	
+	// Test
 	@FindBy(how=How.LINK_TEXT, using="Sign in")
 	public static WebElement sign_in;
 	
