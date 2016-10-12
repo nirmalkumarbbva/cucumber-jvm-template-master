@@ -29,24 +29,27 @@ public class Hooks{
      */
     public void openBrowser() throws MalformedURLException {
     	System.out.println("Called openBrowser");
-    	
+
     	service = new ChromeDriverService.Builder()
-    	        .usingDriverExecutable(new File("/Users/nirmalkumar/Downloads/chromedriver"))
-    	        .usingAnyFreePort()
-    	        .build();
-    	    try {
-				service.start();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        	        .usingDriverExecutable(new File("/Users/nirmalkumar/Downloads/chromedriver"))
+        	        .usingAnyFreePort()
+        	        .build();
+        	
+		try {
+			service.start();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    		
+	 	System.out.println("111 - service.getUrl()::::"+service.getUrl());
+    	driver= new RemoteWebDriver(service.getUrl(), DesiredCapabilities.chrome());  
     	
-    	System.out.println("111 - service.getUrl()::::"+service.getUrl());
-    	driver= new RemoteWebDriver(service.getUrl(), DesiredCapabilities.chrome());
-    	
-    	//driver = new ChromeDriver();
+    	// driver = new ChromeDriver();
     	driver.manage().deleteAllCookies();
     	driver.manage().window().maximize();
+    	
+    	
     }
 
      
@@ -59,7 +62,6 @@ public class Hooks{
         if(scenario.isFailed()) {
         try {
         	 scenario.write("Current Page URL is " + driver.getCurrentUrl());
-//            byte[] screenshot = getScreenshotAs(OutputType.BYTES);
             byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
             scenario.embed(screenshot, "image/png");
         } catch (WebDriverException somePlatformsDontSupportScreenshots) {
@@ -67,8 +69,9 @@ public class Hooks{
         }
         
         }
-        driver.quit();
-        service.stop();
+        
+       driver.quit();
+       service.stop();
         
     }
     
